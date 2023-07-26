@@ -2,23 +2,38 @@
 html,body {
 	margin:0;
 	height: 100%;
+	padding: 0;
 }
-/* 블록요소의 width 는 기본이 화면의 100% , 
-height는 컨텐츠 크기 만큼. 높이는 padding으로 정하기*/
+/* header,nav,section,footer 를 전체 화면 기준으로 높이를 부모 태그 기준 비율로 정합니다.
+이 때 padding 과 border 를 포함하여 계산하기 위해 box-sizing : border-box; 로 합니다.
+예시 : 
+header - 20% 
+nav - 7%
+section - 66%
+footer - 7%
+nav ul - 100%
+높이 속성을 height, min-height 각각 사용해 보고 테스트는 브라우저 크기를 다르게 하면서 
+실행해보세요.   */
 header {
 	padding: 40px 20px;
 	background-color: orange;
 	color : white;
 	box-sizing: border-box;
-	height: 20%;
+	min-height: 20%;
+	/* flexbox 레이아웃으로 자식 요소를 정렬하기 */
+	display: flex;
+	/* 수직 정렬 */
+  	align-items: center;
+  	/* 수평 정렬 */
+  	justify-content: center;
 }
 nav {
 		box-sizing: border-box;
-		height: 7%;
+		min-height: 7%;
+		background-color: brown;
 }
-ul {
+nav ul {
 	list-style: none;
-	background-color: brown;
 	margin : 0px;
 	/* 자식 li 에 float 속성을 지정헀을 때 필요합니다. */
 	overflow: hidden;
@@ -38,16 +53,14 @@ nav li {
 	   ul 태그 overflow 를 설정하기
 	 */
 }
-
 section {
 	padding: 20px;
-	background-color: azure;
+	background-color: yellow;
 	/* 컨텐츠 내용만큼 높이만 지정되는 것을 
 	   최소 높이 지정하여 바꾸기 */
 /* 	min-height: 400px; */
 	box-sizing: border-box;
-	height: 66%;
-	
+	min-height: 66%;
 }
 
 footer {
@@ -57,10 +70,10 @@ footer {
 	font-size : 80%;
 	text-align: center;
 	box-sizing: border-box;
-	height: 7%;
-	
+	min-height: 7%;
 }
 
 h2 {
 	text-align: center;
+	border: 1px solid gray;
 }
