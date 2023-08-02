@@ -26,9 +26,77 @@
 	console.log(new Date().getTime())
 	console.log('8. 날짜 및 시간 관련 메소드')
 	let today = new Date()
-	
-	
+	console.log('8-1) 년도 : ' + today.getFullYear())
+	console.log('8-2) 월 : ' + today.getMonth())    //월을 number 로 표기할때는 0~11
+	console.log('8-3) 일 : ' + today.getDate())
+	console.log('8-4) 시 : ' + today.getHours())
+	console.log('8-5) 분 : ' + today.getMinutes())
+	console.log('8-6) 초 : ' + today.getSeconds())
+	console.log('9.날짜변경 메소드')
+	today.setFullYear(today.getFullYear()+3)    //new Date() 기준 +3년으로 날짜변경
+	console.log('1) 3년후 날짜  : ' + today)
+	today = new Date()
+	today.setFullYear(today.getFullYear()-3)
+	console.log('2) 3년전 날짜  : ' + today)
 
+	today = new Date()
+	today.setMonth(today.getMonth()+20)
+	console.log(' ) 20개월 이후 날짜 : ' + today)
+	
+	//여러분의 탄생일 기준 +10000 일은 ?
+	let mybirth = new Date('2003-01-03')
+	console.log('3)나의 탄생일 : ' + mybirth.toLocaleString())
+	mybirth.setDate(mybirth.getDate()+10000)
+	console.log('4)나의 탄생 10000일 기념일 : ' + mybirth.toLocaleString())
+
+	//내가 태어난지 몇일되었을까요?
+	mybirth = new Date('2003-01-03')
+	let diff = new Date() - mybirth		//Date() 값끼리 연산 결과는 ms
+	console.log('내가 태어난지 몇일되었을까요? ' + diff +'ms')
+	const $1day = 24*60*60*1000   //1일 = ? ms
+	console.log('내가 태어난지 몇일되었을까요? ' + diff/$1day +'일')	//실수값
+	console.log('내가 태어난지 몇일되었을까요? ' + Math.ceil(diff/$1day) +'일')
+	//Math 의 메소드 : ceil(천장.올림), floor(바닥.내림), round(반올림) 는 실수를 정수로 변환
+	
+	//html 문서에 현재 날짜를 2023-07-31 로 출력해보세요.=> document.write로 출력하세요.
+	today = new Date()
+	let year = today.getFullYear()
+	let month = today.getMonth()+1		//type이 number
+	let dates = today.getDate()
+	console.log(typeof month)
+	document.write(year + '-' + month + '-' + dates)
+	document.write('<br>')
+	/* 자바스크립트 문자열 메소드에는 padStart, padEnd 메소드로 자리수를 맞출수 있습니다. 
+	   month 는 number 이므로 string으로 바꾼 후에 메소드 사용
+	*/
+	document.write(year + '-' + month.toString().padStart(2,'0')+ '-' + dates)
+	document.write('<br>')
+	month = (today.getMonth()+1).toString().padStart(2,'0')   //type이 string
+	dates = today.getDate().toString().padStart(2,'0')
+	let result = [year,month,dates].join('-')
+	document.write(result)
+	document.write('<br>')
+	//함수를 정의해보기. 날짜 Date , 기호를 인자로 받아서 날짜 문자열 리턴. 예시:2023-07-31
+	function dateFormat(vdate,symbol){
+		
+		
+		
+	}
+	//실행
+	document.write(dateFormat(new Date(2022,3,2),'/'))  //    2022/03/02 출력하기
 </script>
 </body>
 </html>
+<!-- 자바스크립트의 배열 메소드를 10개 테스트 하기 (과제) 
+	 구글 드라이브에 올려 주세요.
+-->
+
+
+
+
+
+
+
+
+
+
