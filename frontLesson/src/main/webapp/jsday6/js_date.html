@@ -78,12 +78,20 @@
 	document.write('<br>')
 	//함수를 정의해보기. 날짜 Date , 기호를 인자로 받아서 날짜 문자열 리턴. 예시:2023-07-31
 	function dateFormat(vdate,symbol){
-		
-		
-		
+		const year = vdate.getFullYear()
+		const month = (vdate.getMonth()+1).toString().padStart(2,'0')
+		const day = vdate.getDate().toString().padStart(2,'0')
+		let result = [year,month,day].join(symbol)
+		return result
 	}
 	//실행
-	document.write(dateFormat(new Date(2022,3,2),'/'))  //    2022/03/02 출력하기
+	document.write('<br>')
+	document.write('dateFormat 함수 정의 테스트<br>')
+	document.write(dateFormat(new Date(2022,3,2),'/'))  //    2022/04/02 출력하기
+	let testdate = '2023-08-11'		//input type=date일때 value 문자열 형식
+	document.write('<br>')
+	document.write(dateFormat(new Date(testdate),'-'))
+			
 </script>
 </body>
 </html>
