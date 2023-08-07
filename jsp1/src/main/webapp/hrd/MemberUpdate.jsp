@@ -1,12 +1,27 @@
-<!DOCTYPE html>  <!-- HTML5 -->
+<%@page import="sample.dto.MemberDto"%>
+<%@page import="sample.dao.MemberDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">  <!-- euc-kr : 대한민국 코드 -->
+<meta charset="UTF-8">  
 <title>홈쇼핑 회원 정보 수정</title>
 	<link rel="stylesheet" href="./Layout.css?v=3">
 	<link rel="stylesheet" href="./MemberUpdate.css?v=3">
 </head>
 <body>
+<!-- 정보 수정 화면은 현재값을 먼저 보여주고 수정할 수 있게 합니다. custno 즉 PK 값으로 
+     db에서 select 한 결과를 화면에 표시하는 코드가 필요합니다. -->
+<!-- MemberList.jsp 에서 보낸 파라미터를 받아 custno 변수에 저장합니다. 그리고 value에서 출력하기. -->
+<%
+	String custno = request.getParameter("custno");
+	MemberDao dao = MemberDao.getMemberDao();
+	MemberDto dto = null;
+	if(custno != null )  /* 수정할 데이터를 가져오기.(참고:custno 가 테이블 PK 값) */
+			dto = dao.selectOne(Integer.parseInt(custno));
+%>
+
  <header> <!-- header -->
  	<h2>홈쇼핑 회원관리 ver1.0</h2>
  </header> 
@@ -25,19 +40,20 @@
  <table>
  	<tr>
  		<td><label for="lblNo">회원번호</label></td>
- 		<td><input type="number" id="lblNo" value="100001" name="customNo" disabled="disabled"></td>
+ 		<!-- MemberList.jsp 에서 보낸 파라미터를 받아 custno 변수에 저장합니다. 그리고 value에서 출력하기. -->
+ 		<td><input type="number" id="lblNo" value="<%= custno %>" name="customNo" disabled="disabled"></td>
  	</tr>
  	<tr>
  		<td><label for="lblname">회원성명</label></td>
- 		<td><input type="text" id="lblname" name="name"></td>
+ 		<td><input type="text" id="lblname" name="name" value=""></td>
  	</tr>
  	<tr>
  		<td><label for="lblphone">회원전화</label></td>
- 		<td><input type="text" id="lblphone" name="phone"></td>
+ 		<td><input type="text" id="lblphone" name="phone" value=""></td>
  	</tr>
  	<tr>
  		<td><label for="lbladdr">회원주소</label></td>
- 		<td><input type="text" id="lbladdr" name="address"></td>
+ 		<td><input type="text" id="lbladdr" name="address" value=""></td>
  	</tr>
  	<tr>
  		<td><label for="lblsign">가입일자</label></td>
@@ -45,34 +61,12 @@
  	</tr>
  	<tr>
  		<td><label for="lblgrade">고객등급[A:VIP, B:일반, C:직원]</label></td>
- 		<td><select  id="lblgrade" name="grade">
- 				<option value="A">VIP(A)</option>
- 				<option value="B">일반(B)</option>
- 				<option value="C">직원(C)</option>
- 				</select>
+ 		<td><input  id="lblgrade" name="grade" value="">
  		</td>
  	</tr>
  	<tr>
  		<td><label for="lblcode">도시코드</label></td>
- 		<td><select id="lblcode" name="citycode">
-	 			<option value="11">서울특별시(11)</option>
-				<option value="21">부산광역시(21)</option>
-				<option value="22">대구광역시(22)</option>
-				<option value="23">인천광역시(23)</option>
-				<option value="24">광주광역시(24)</option>
-				<option value="25">대전광역시(25)</option>
-				<option value="26">울전광역시(26)</option>
-				<option value="29">세종특별자치시(29)</option>
-				<option value="31">경기도(31)</option>
-				<option value="32">강원도(32)</option>
-				<option value="33">충청북도(33)</option>
-				<option value="34">충청남도(34)</option>
-				<option value="35">전라북도(35)</option>
-				<option value="36">전라남도(36)</option>
-				<option value="37">경상북도(37)</option>
-				<option value="38">경상남도(38)</option>
-				<option value="39">제주특별자치도(39)</option>
-			</select>
+ 		<td><input id="lblcode" name="citycode" value="">
 			</td>
  		</tr>
  		<tr>

@@ -45,18 +45,34 @@
 			</tr>
 <%
 		//list.get(i).getCustno() 처럼 인덱스 쓰지말고 향상 for문
+		for(MemberDto dto : list) {
 %>			
 			<tr>
-				<td><a href="./MemberUpdate.html">100001</a></td>
-				<td>김행복</td>
-				<td>010-1111-2222</td>
-				<td>서울 동대문구 휘경동</td>
-				<td>2015-12-02</td>
-				<td>VIP</td>
-				<td>01</td>
+				<td><a href="MemberUpdate.jsp?custno=<%= dto.getCustno() %>">
+					<%=dto.getCustno() %></a>
+				</td>
+				<td><%= dto.getCustname() %></td>
+				<td><%= dto.getPhone()%></td>
+				<td><%= dto.getAddress()%></td>
+				<td><%= dto.getJoindate()%></td>
+				<!-- 스크립트릿, 표현식 등 자바코드 주석기호는 아래와 같습니다. -->
+				<%-- <td><%= dto.getGrade()%></td> --%>
+				<!-- 스크립트릿 자바코드 위치는 body 안에 어디에나 가능합니다. -->
+				<td>
+				<!-- out : jsp 객체. html 문서에 출력기능을 갖고 텍스트와 태그를 출력합니다. 
+						   따로 선언하지 않고 사용하는 내장() 객체입니다.
+				-->
+					<%
+						if (dto.getGrade().equals("VIP"))					
+							out.println("<span style='color:red;'>VIP</span>");
+						else 	
+							out.println(dto.getGrade());
+					%>
+				</td>
+				<td><%= dto.getCity()%></td>
 			</tr>
 <%
-
+		}
 %>
 		</table>
 	</section>

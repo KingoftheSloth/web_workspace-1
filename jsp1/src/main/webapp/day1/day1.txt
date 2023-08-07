@@ -31,7 +31,31 @@ webapp 아래 보면 WEB-INF - lib 폴더에 라이브러리는 복붙해서 가
 3) 지시자 : <%@    %>  jsp 설정 관련
 	page 지시자 <%@ page    %>: 언어설정, import 등 jsp파일에서는 필수적인 지시자 		
 	include 지시자 : file="파일명" . file속성으로 지정된 소스코드를 포함시킴  
+	taglib 지시자 : 외부 라이브러리 사용하기
+4) 선언부 : <%!    %>  변수와 메소드 선언
+	변수는 스크립트릿 안에서 선언하고 쓰는 것이 일반적이고
+	메소드는 자바 소스파일로 작성해서 쓰는 것이 바람직(html 태그들과 자바코드 분리)
+	하므로 거의 사용되지 않습니다.
+
+2. 내장 객체
+1) out : html 문서에 출력하기 위한 객체. 태그,스타일,자바스크립트를 html 문서에 출력하면 동작이 됩니다.
+2) request : 요청. 사용자가 보낸 요청에 대한 정보를 저장하는 객체. 서블릿에서 메소드 인자로 선언.
+자세한 메소드 실행은 2request.jsp 참고
+*request 메소드 테스트 할때 필요한 설정사항*
+ 이클립스에서 ipv4 로 표시되게 설정을 바꿉시다. 
+ Run - Run Configurations
+ 톰캣의 arguments 항목에 -Djava.net.preferIPv4Stack=true 추가하기
+
+<<request 의 파라미터 사용>>
+사용자는 처리할 데이터를 request (요청)으로 보냅니다. 
+보내는 방법은 1) url 의 쿼리스트링 2) form 태그 사용   2가지 입니다. 
+1) 번은 a 태그 href 속성값으로 정하기. 자바스크립트의 location.href = '요청url과 쿼리스트링' 사용하기 2가지 입니다.
+요청으로 전달받은 데이터(파라미터)를 서버에서 받을때는 request 객체를 사용합니다.메소드는 getParameter()
+ 
+*예제파일*
+3parameterSend.jsp
+3parameterReceive.jsp
 
 
-
+<<오늘의 연습>> : MemberList.jsp 와 MemberUpdate.jsp 완성하기
 
