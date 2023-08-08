@@ -41,19 +41,23 @@
  	  		ㄴ 이 파일에는 자바코드 만 작성하고 태그는 필요 없습니다. 
  	  MemberUpdate.jsp에서 보내는 파라미터 이름은 input 태그의 name 속성입니다.	
  	   -->
- <form action="MemberSave.jsp" method="post">
+ <form action="UpdateSave.jsp" method="post">
+ <!-- 이후 자바코드 작성 할 때 가독성,편리성을 위해 
+ 	  input name 이름은 DTO 클래스 변수명과 동일하게 하세요.
+ 	  UpdateSave.jsp 의 파라미터 저장 변수도 DTO와 동일하게 하세요.
+  -->
  <table>
  	<tr>
  		<td><label for="lblNo">회원번호</label></td>
  		<!-- MemberList.jsp 에서 보낸 파라미터를 받아 custno 변수에 저장합니다. 그리고 value에서 출력하기. -->
- 		<td><input type="number" id="lblNo" value="<%= custno %>" name="customNo" 
+ 		<td><input type="number" id="lblNo" value="<%= custno %>"  
  				disabled="disabled">
- 			<!-- disabled로 설정된 것은 파라미터 전달이 안됩니다. readonly로 바꾸세요. -->		
+ 			<input type="hidden" name="custno" value="<%= custno %>">	
  		</td>
  	</tr>
  	<tr>
  		<td><label for="lblname">회원성명</label></td>
- 		<td><input type="text" id="lblname" name="name" value="<%= dto.getCustname() %>"></td>
+ 		<td><input type="text" id="lblname" name="custname" value="<%= dto.getCustname() %>"></td>
  	</tr>
  	<tr>
  		<td><label for="lblphone">회원전화</label></td>
@@ -76,7 +80,7 @@
  	</tr>
  	<tr>
  		<td><label for="lblcode">도시코드</label></td>
- 		<td><input id="lblcode" name="citycode" value="<%= dto.getCity() %>">
+ 		<td><input id="lblcode" name="city" value="<%= dto.getCity() %>">
 			</td>
  		</tr>
  		<tr>
