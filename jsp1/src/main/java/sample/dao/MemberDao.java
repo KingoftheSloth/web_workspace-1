@@ -57,6 +57,9 @@ public class MemberDao {
 			String city = rs.getString(7);
 			result = new MemberDto(custno, custname, phone, address, joindate, grade, city);
 		}
+		rs.close();
+		ps.close();
+		conn.close();
 		return result;
 	}
 	
